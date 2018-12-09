@@ -38,4 +38,22 @@ public class WineList {
 		return result;
 	}
 
+	public int getCount() {
+
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory(this.DATABASE);
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+
+		Query query = em.createQuery("Select Count(w) from WineEntity w ");
+
+		return ((Number) query.getSingleResult()).intValue();
+
+	}
+	
+	public static void main(String args[]) {
+
+		System.out.println(new WineList().getCount());
+		
+	}
+
 }

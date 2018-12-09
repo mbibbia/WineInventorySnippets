@@ -38,6 +38,18 @@ public class RegionList {
 		return result;
 	}
 	
+	public int getCount() {
+
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory(this.DATABASE);
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+
+		Query query = em.createQuery("Select Count(r) from RegionEntity c ");
+
+		return ((Number) query.getSingleResult()).intValue();
+
+	}
+	
 	public static void main(String args[]) {
 
 		RegionList list = new RegionList();

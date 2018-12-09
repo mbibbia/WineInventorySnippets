@@ -37,5 +37,17 @@ public class ProducerList {
 
 		return result;
 	}
+	
+	public int getCount() {
+
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory(this.DATABASE);
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+
+		Query query = em.createQuery("Select Count(p) from ProducerEntity c ");
+
+		return ((Number) query.getSingleResult()).intValue();
+
+	}
 
 }

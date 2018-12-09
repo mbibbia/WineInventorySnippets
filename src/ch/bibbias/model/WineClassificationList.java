@@ -37,10 +37,26 @@ public class WineClassificationList {
 
 		return result;
 	}
+	
+	public int getCount() {
+
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory(this.DATABASE);
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+
+		Query query = em.createQuery("Select Count(wc) from WineClassificationEntity wc ");
+
+		return ((Number) query.getSingleResult()).intValue();
+
+	}
 
 	public static void main(String args[]) {
 
 		WineClassificationList list = new WineClassificationList();
+		
+		System.out.println("Anzahl:\t" + list.getCount());
+		System.out.println();
+		
 		for (WineClassification wc : list.get()) {
 			System.out.print(wc.getCode());
 			System.out.print("\t" + wc.getName());

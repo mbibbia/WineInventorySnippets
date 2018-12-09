@@ -37,15 +37,35 @@ public class CountryList {
 
 		return result;
 	}
+	
+	public int getCount() {
+
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory(this.DATABASE);
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+
+		Query query = em.createQuery("Select Count(c) from CountryEntity c ");
+
+		return ((Number) query.getSingleResult()).intValue();
+
+	}
 
 	public static void main(String args[]) {
 
 		CountryList list = new CountryList();
+		
+		System.out.println("Anzahl:\t" + list.getCount());
+		System.out.println();
+				
 		for (Country c : list.get()) {
 			System.out.print(c.getCode());
 			System.out.print("\t" + c.getName());
 			System.out.println();
 		}
+		
+	
 	}
+	
+	
 
 }
