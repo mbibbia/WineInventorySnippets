@@ -23,6 +23,19 @@ public class Region {
 
 	}
 
+	Region(RegionEntity persistent) {
+		this.persistent = persistent;
+	}
+
+	public long getId() {
+		return this.persistent.getId();
+	}
+
+	public Country getCountry() {
+		return new Country(this.persistent.getCountry());
+
+	}
+
 	public String getName() {
 		return this.persistent.getName();
 	}

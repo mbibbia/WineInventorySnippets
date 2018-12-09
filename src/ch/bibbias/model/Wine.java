@@ -23,6 +23,10 @@ public class Wine {
 
 	}
 
+	Wine(WineEntity persistent) {
+		this.persistent = persistent;
+	}
+
 	public String getName() {
 		return this.persistent.getName();
 	}

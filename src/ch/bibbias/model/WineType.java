@@ -23,6 +23,14 @@ public class WineType {
 
 	}
 
+	WineType(WineTypeEntity persistent) {
+		this.persistent = persistent;
+	}
+
+	public String getCode() {
+		return this.persistent.getCode();
+	}
+
 	public String getName() {
 		return this.persistent.getName();
 	}

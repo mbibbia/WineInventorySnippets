@@ -23,6 +23,14 @@ public class Producer {
 
 	}
 
+	Producer(ProducerEntity persistent) {
+		this.persistent = persistent;
+	}
+	
+	public long getId() {
+		return this.persistent.getId();
+	}
+
 	public String getName() {
 		return this.persistent.getName();
 	}
