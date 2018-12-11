@@ -2,7 +2,12 @@ package ch.bibbias.app;
 
 import java.io.IOException;
 
+import ch.bibbias.model.Wine;
+import ch.bibbias.model.WineList;
+import ch.bibbias.view.WineListController;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -13,6 +18,21 @@ public class MainApp extends Application {
 
 	private Stage primaryStage;
 	private BorderPane rootLayout;
+	private ObservableList<Wine> wineList;
+
+	public MainApp() {
+		wineList = FXCollections.observableArrayList(new WineList().get());
+
+	}
+
+	/**
+	 * Returns the data as an observable list of Wines.
+	 * 
+	 * @return
+	 */
+	public ObservableList<Wine> getWineList() {
+		return wineList;
+	}
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -31,7 +51,7 @@ public class MainApp extends Application {
 		try {
 			// Load root layout from fxml file.
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainApp.class.getResource("view/RootLayout.fxml"));
+			loader.setLocation(MainApp.class.getResource("../view/RootLayout.fxml"));
 			rootLayout = (BorderPane) loader.load();
 
 			// Show the scene containing the root layout.
@@ -50,11 +70,15 @@ public class MainApp extends Application {
 		try {
 			// Load wine list.
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainApp.class.getResource("view/WineListView.fxml"));
+			loader.setLocation(MainApp.class.getResource("../view/WineListView.fxml"));
 			AnchorPane wineListView = (AnchorPane) loader.load();
 
 			// Set wine list into the center of root layout.
 			rootLayout.setCenter(wineListView);
+
+			// Give the controller access to the main app.
+			WineListController controller = loader.getController();
+			controller.setMainApp(this);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

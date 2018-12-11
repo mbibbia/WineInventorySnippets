@@ -2,6 +2,8 @@ package ch.bibbias.persistence.objects;
 
 import javax.persistence.*;
 
+import javafx.beans.property.LongProperty;
+
 @Entity
 @Table(name = "wine")
 public class WineEntity {
@@ -77,7 +79,7 @@ public class WineEntity {
 		this.producer = producer;
 	}
 
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
 

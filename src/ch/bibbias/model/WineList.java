@@ -9,12 +9,14 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import ch.bibbias.persistence.objects.WineEntity;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class WineList {
 
 	private final String DATABASE = "PT_Wine_Inventory";
 
-	public List<Wine> get() {
+	public ObservableList<Wine> get() {
 
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory(this.DATABASE);
 		EntityManager em = emf.createEntityManager();
@@ -29,7 +31,7 @@ public class WineList {
 		em.close();
 		emf.close();
 
-		List<Wine> result = new ArrayList<Wine>();
+		ObservableList<Wine> result = FXCollections.observableArrayList();
 
 		for (WineEntity w : list) {
 			result.add(new Wine(w.getId()));
@@ -49,11 +51,11 @@ public class WineList {
 		return ((Number) query.getSingleResult()).intValue();
 
 	}
-	
+
 	public static void main(String args[]) {
 
 		System.out.println(new WineList().getCount());
-		
+
 	}
 
 }

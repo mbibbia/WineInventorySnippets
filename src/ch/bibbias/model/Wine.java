@@ -5,6 +5,10 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import ch.bibbias.persistence.objects.WineEntity;
+import javafx.beans.property.LongProperty;
+import javafx.beans.property.SimpleLongProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 public class Wine {
 
@@ -19,7 +23,12 @@ public class Wine {
 
 	public Wine(long id) {
 		this.id = id;
-		this.persistent = new WineEntity(this.id);
+		
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory(this.DATABASE);
+		EntityManager em = emf.createEntityManager();
+	
+		this.persistent = em.find(WineEntity.class,this.id);  
+		
 
 	}
 
@@ -27,28 +36,66 @@ public class Wine {
 		this.persistent = persistent;
 	}
 
+	public LongProperty getIdProperty() {
+		return new SimpleLongProperty(this.persistent.getId());
+	}
+
+	public long getId() {
+		return this.id;
+
+	}
+
+	public StringProperty getNameProperty() {
+		return new SimpleStringProperty(this.persistent.getName());
+
+	}
+
 	public String getName() {
 		return this.persistent.getName();
+	}
+
+	public StringProperty getTypeProperty() {
+		return new SimpleStringProperty(this.persistent.getWineType().getCode());
 	}
 
 	public WineType getType() {
 		return new WineType(this.persistent.getWineType().getCode());
 	}
 
+	public StringProperty getClassificationProperty() {
+		return new SimpleStringProperty(this.persistent.getClassification().getCode());
+	}
+
 	public WineClassification getClassification() {
 		return new WineClassification(this.persistent.getClassification().getCode());
+	}
+
+	public StringProperty getCountryProperty() {
+		return new SimpleStringProperty(this.persistent.getCountry().getCode());
 	}
 
 	public Country getCountry() {
 		return new Country(this.persistent.getCountry().getCode());
 	}
 
+	public StringProperty getRegionProperty() {
+		return new SimpleStringProperty(this.persistent.getRegion().getName());
+	}
+
 	public Region getRegion() {
 		return new Region(this.persistent.getRegion().getId());
 	}
 
+	public StringProperty getProducerProperty() {
+		return new SimpleStringProperty(this.persistent.getProducer().getName());
+	}
+
+	public Producer getProducer() {
+		return new Producer(this.persistent.getProducer().getId());
+	}
+
 	public void reset() {
-		this.persistent = new WineEntity(id);
+		this.persistent = new WineEntity(this.id);
 	}
 
 	public void save() {
