@@ -24,11 +24,11 @@ public class Wine {
 	public Wine(long id) {
 		this.id = id;
 		
+		//Load Data
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory(this.DATABASE);
 		EntityManager em = emf.createEntityManager();
 	
 		this.persistent = em.find(WineEntity.class,this.id);  
-		
 
 	}
 
@@ -55,11 +55,11 @@ public class Wine {
 	}
 
 	public StringProperty getTypeProperty() {
-		return new SimpleStringProperty(this.persistent.getWineType().getCode());
+		return new SimpleStringProperty(this.persistent.getWineType().getName());
 	}
 
 	public WineType getType() {
-		return new WineType(this.persistent.getWineType().getCode());
+		return new WineType(this.persistent.getWineType());
 	}
 
 	public StringProperty getClassificationProperty() {
@@ -71,7 +71,7 @@ public class Wine {
 	}
 
 	public StringProperty getCountryProperty() {
-		return new SimpleStringProperty(this.persistent.getCountry().getCode());
+		return new SimpleStringProperty(this.persistent.getCountry().getName());
 	}
 
 	public Country getCountry() {

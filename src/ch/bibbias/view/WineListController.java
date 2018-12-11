@@ -59,11 +59,11 @@ public class WineListController {
 		// Initialize the wine table with columns.
 		wineIdColumn.setCellValueFactory(cellData -> cellData.getValue().getIdProperty().asObject());
 		wineNameColumn.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
-//		wineTypeColumn.setCellValueFactory(cellData -> cellData.getValue().getTypeProperty());
-//		wineClassificationColumn.setCellValueFactory(cellData -> cellData.getValue().getClassificationProperty());
-//		wineCountryColumn.setCellValueFactory(cellData -> cellData.getValue().getCountryProperty());
-//		wineRegionColumn.setCellValueFactory(cellData -> cellData.getValue().getRegionProperty());
-//		wineProducerColumn.setCellValueFactory(cellData -> cellData.getValue().getProducerProperty());
+		wineTypeColumn.setCellValueFactory(cellData -> cellData.getValue().getTypeProperty());
+		wineClassificationColumn.setCellValueFactory(cellData -> cellData.getValue().getClassificationProperty());
+		wineCountryColumn.setCellValueFactory(cellData -> cellData.getValue().getCountryProperty());
+		wineRegionColumn.setCellValueFactory(cellData -> cellData.getValue().getRegionProperty());
+		wineProducerColumn.setCellValueFactory(cellData -> cellData.getValue().getProducerProperty());
 		
 	}
 

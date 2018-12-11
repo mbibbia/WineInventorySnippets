@@ -37,7 +37,7 @@ public class MainApp extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
-		this.primaryStage.setTitle("Wine Inventory");
+		this.primaryStage.setTitle("Meine Weine");
 
 		initRootLayout();
 
