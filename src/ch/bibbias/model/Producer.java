@@ -19,14 +19,19 @@ public class Producer {
 
 	public Producer(long id) {
 		this.id = id;
-		this.persistent = new ProducerEntity(this.id);
+
+		// Load Data
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory(this.DATABASE);
+		EntityManager em = emf.createEntityManager();
+
+		this.persistent = em.find(ProducerEntity.class, this.id);
 
 	}
 
 	Producer(ProducerEntity persistent) {
 		this.persistent = persistent;
 	}
-	
+
 	public long getId() {
 		return this.persistent.getId();
 	}

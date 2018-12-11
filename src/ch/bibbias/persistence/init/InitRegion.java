@@ -19,10 +19,6 @@ public class InitRegion {
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
 
-		// Truncate table region
-		String query = new StringBuilder("TRUNCATE TABLE ").append("region").toString();
-		em.createNativeQuery(query).executeUpdate();
-
 		// Init values
 		ArrayList<String> regionNameList = new ArrayList<>();
 		CountryEntity country;

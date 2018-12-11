@@ -19,7 +19,12 @@ public class Region {
 
 	public Region(long id) {
 		this.id = id;
-		this.persistent = new RegionEntity(this.id);
+
+		// Load Data
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory(this.DATABASE);
+		EntityManager em = emf.createEntityManager();
+
+		this.persistent = em.find(RegionEntity.class, this.id);
 
 	}
 

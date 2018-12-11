@@ -2,6 +2,8 @@ package ch.bibbias.view;
 
 import javafx.scene.control.TableView;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import ch.bibbias.app.MainApp;
@@ -64,7 +66,14 @@ public class WineListController {
 		wineCountryColumn.setCellValueFactory(cellData -> cellData.getValue().getCountryProperty());
 		wineRegionColumn.setCellValueFactory(cellData -> cellData.getValue().getRegionProperty());
 		wineProducerColumn.setCellValueFactory(cellData -> cellData.getValue().getProducerProperty());
-		
+
+		// Clear wine details.
+		showWineDetails(null);
+
+		// Listen for selection changes and show the wine details when changed.
+		wineTable.getSelectionModel().selectedItemProperty()
+				.addListener((observable, oldValue, newValue) -> showWineDetails(newValue));
+
 	}
 
 	/**
@@ -77,6 +86,56 @@ public class WineListController {
 
 		// Add observable list data to the table
 		wineTable.setItems(mainApp.getWineList());
+	}
+
+	/**
+	 * Fills all text fields to show details about the person. If the specified
+	 * person is null, all text fields are cleared.
+	 * 
+	 * @param person the person or null
+	 */
+	private void showWineDetails(Wine wine) {
+		if (wine != null) {
+			// Fill the labels with info from the wine object.
+			wineIdLabel.setText(Long.toString(wine.getId()));
+			wineNameLabel.setText(wine.getName());
+			wineTypeLabel.setText(wine.getType().getName());
+			wineClassificationLabel.setText(wine.getClassification().getCode());
+			wineCountryLabel.setText(wine.getCountry().getCode());
+			wineRegionLabel.setText(wine.getRegion().getName());
+			wineProducerLabel.setText(wine.getProducer().getName());
+
+		} else {
+			// Wine is null, remove all the text.
+			wineIdLabel.setText("");
+			wineNameLabel.setText("");
+			wineTypeLabel.setText("");
+			wineClassificationLabel.setText("");
+			wineCountryLabel.setText("");
+			wineRegionLabel.setText("");
+			wineProducerLabel.setText("");
+		}
+	}
+
+	/**
+	 * Called when the user clicks on the delete button.
+	 */
+	@FXML
+	private void handleDeleteWine() {
+		int selectedIndex = wineTable.getSelectionModel().getSelectedIndex();
+		if (selectedIndex >= 0) {
+			wineTable.getItems().remove(selectedIndex);
+		} else {
+			// Nothing selected.
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.initOwner(mainApp.getPrimaryStage());
+			alert.setTitle("No Selection");
+			alert.setHeaderText("No Wine Selected");
+			alert.setContentText("Please select a wine in the table.");
+
+			alert.showAndWait();
+		}
+
 	}
 
 }

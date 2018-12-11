@@ -28,7 +28,7 @@ public class RegionEntity {
 	}
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public void setName(String name) {
@@ -36,11 +36,11 @@ public class RegionEntity {
 	}
 
 	public long getId() {
-		return id;
+		return this.id;
 	}
 
 	public CountryEntity getCountry() {
-		return country;
+		return this.country;
 	}
 
 	public void setCountry(CountryEntity country) {

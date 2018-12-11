@@ -2,16 +2,15 @@ package ch.bibbias.persistence.objects;
 
 import javax.persistence.*;
 
-import javafx.beans.property.LongProperty;
-
 @Entity
 @Table(name = "wine")
 public class WineEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "wine_id")
 	private Long id;
-	@Column(name = "name", length = 100)
+	@Column(name = "wine_name", length = 100)
 	private String name;
 
 	@OneToOne

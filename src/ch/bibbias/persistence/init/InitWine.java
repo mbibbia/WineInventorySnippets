@@ -34,6 +34,15 @@ public class InitWine {
 		wine.setRegion(new RegionEntity(18));
 		wine.setProducer(new ProducerEntity(1));
 		wineList.add(wine);
+		
+		wine = new WineEntity();
+		wine.setName("Barolo");
+		wine.setWineType(new WineTypeEntity("RED"));
+		wine.setClassification(new WineClassificationEntity("DOC"));
+		wine.setCountry(new CountryEntity("IT"));
+		wine.setRegion(new RegionEntity(18));
+		wine.setProducer(new ProducerEntity(1));
+		wineList.add(wine);
 
 		for (WineEntity w : wineList) {
 			em.persist(w);

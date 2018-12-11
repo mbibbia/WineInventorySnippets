@@ -19,7 +19,12 @@ public class Country {
 
 	public Country(String code) {
 		this.code = code;
-		this.persistent = new CountryEntity(this.code);
+
+		// Load Data
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory(this.DATABASE);
+		EntityManager em = emf.createEntityManager();
+
+		this.persistent = em.find(CountryEntity.class, this.code);
 
 	}
 

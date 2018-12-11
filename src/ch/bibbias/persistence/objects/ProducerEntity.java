@@ -34,21 +34,6 @@ public class ProducerEntity {
 	@OneToOne
 	@JoinColumn(name = "producer_country")
 	private CountryEntity country;
-	public CountryEntity getCountry() {
-		return country;
-	}
-
-	public void setCountry(CountryEntity country) {
-		this.country = country;
-	}
-
-	public RegionEntity getRegion() {
-		return region;
-	}
-
-	public void setRegion(RegionEntity region) {
-		this.region = region;
-	}
 
 	@JoinColumn(name = "producer_region")
 	private RegionEntity region;
@@ -63,7 +48,7 @@ public class ProducerEntity {
 	}
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public void setName(String name) {
@@ -143,7 +128,23 @@ public class ProducerEntity {
 	}
 
 	public Long getId() {
-		return id;
+		return this.id;
+	}
+
+	public CountryEntity getCountry() {
+		return this.country;
+	}
+
+	public void setCountry(CountryEntity country) {
+		this.country = country;
+	}
+
+	public RegionEntity getRegion() {
+		return this.region;
+	}
+
+	public void setRegion(RegionEntity region) {
+		this.region = region;
 	}
 
 }

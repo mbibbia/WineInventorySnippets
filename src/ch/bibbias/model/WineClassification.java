@@ -19,7 +19,12 @@ public class WineClassification {
 
 	public WineClassification(String code) {
 		this.code = code;
-		this.persistent = new WineClassificationEntity(this.code);
+
+		// Load Data
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory(this.DATABASE);
+		EntityManager em = emf.createEntityManager();
+
+		this.persistent = em.find(WineClassificationEntity.class, this.code);
 
 	}
 
