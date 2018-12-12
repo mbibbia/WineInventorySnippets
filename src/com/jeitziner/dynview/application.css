@@ -1,0 +1,16 @@
+.redBackground{
+    -fx-background-color: #FFAAAA;
+}
+
+.blueBackground{
+    -fx-background-color: #D5D5FF;
+}
+
+.yellowBackground{
+    -fx-background-color: #FFEEAA;
+}
+
+.greenBackground{
+    -fx-background-color: #BBFFAA;
+}
+

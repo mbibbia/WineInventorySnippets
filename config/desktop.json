@@ -1,0 +1,49 @@
+{
+	"lang" : "de",
+
+	"database": "SQLite",
+
+	"folders": [
+		{
+			"id": 1,
+			"type": "Button1"
+		},
+		{
+			"id": 2,
+			"type": "Button2"
+		},
+		{
+			"id": 3,
+			"type": "Button3"
+		},
+		{
+			"id": 4,
+			"type": "Button3"
+		}
+
+	],
+
+	"groups": [
+		{
+			"id": 1,
+			"orientation": "horizontal",
+			"subgroups": [{"type": "folder", "id": 1}, {"type": "group", "id": 3}]
+		},
+		{
+			"id": 2,
+			"orientation": "vertical",
+			"subgroups": [{"type": "folder", "id": 4}, {"type": "folder", "id": 3}]
+		},
+		{
+			"id": 3,
+			"orientation": "vertical",
+			"subgroups": [{"type": "folder", "id": 1}, {"type": "group", "id": 4}]
+		},
+		{
+			"id": 4,
+			"orientation": "vertical",
+			"subgroups": [{"type": "folder", "id": 4}, {"type": "folder", "id": 2}]
+		}
+	]
+
+}
