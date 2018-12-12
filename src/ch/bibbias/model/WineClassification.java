@@ -14,6 +14,7 @@ public class WineClassification {
 
 	public WineClassification() {
 		this.persistent = new WineClassificationEntity();
+		this.code = this.persistent.getCode();
 
 	}
 
@@ -30,6 +31,7 @@ public class WineClassification {
 
 	WineClassification(WineClassificationEntity persistent) {
 		this.persistent = persistent;
+		this.code = this.persistent.getCode();
 	}
 
 	public String getCode() {

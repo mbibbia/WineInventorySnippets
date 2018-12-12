@@ -14,6 +14,7 @@ public class Producer {
 
 	public Producer() {
 		this.persistent = new ProducerEntity();
+		this.id = this.persistent.getId();
 
 	}
 
@@ -30,6 +31,7 @@ public class Producer {
 
 	Producer(ProducerEntity persistent) {
 		this.persistent = persistent;
+		this.id = this.persistent.getId();
 	}
 
 	public long getId() {
