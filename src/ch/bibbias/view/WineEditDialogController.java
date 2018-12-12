@@ -1,9 +1,12 @@
 package ch.bibbias.view;
 
-import ch.bibbias.model.Wine;
+import ch.bibbias.model.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -20,19 +23,25 @@ public class WineEditDialogController {
 	@FXML
 	private TextField wineNameField;
 	@FXML
-	private TextField wineTypeField;
+	private ChoiceBox<WineType> wineTypeBox;
 	@FXML
-	private TextField wineClassificationField;
+	private ChoiceBox<WineClassification> wineClassificationBox;
 	@FXML
-	private TextField wineCountryField;
+	private ChoiceBox<Country> wineCountryBox;
 	@FXML
-	private TextField wineRegionField;
+	private ChoiceBox<Region> wineRegionBox;
 	@FXML
-	private TextField wineProducerField;
+	private ChoiceBox<Producer> wineProducerBox;
 
 	private Stage dialogStage;
 	private Wine wine;
 	private boolean okClicked = false;
+	ObservableList<WineType> wineTypeList = FXCollections.observableArrayList(new WineTypeList().get());
+	ObservableList<WineClassification> wineClassificationList = FXCollections
+			.observableArrayList(new WineClassificationList().get());
+	ObservableList<Country> CountryList = FXCollections.observableArrayList(new CountryList().get());
+	ObservableList<Region> RegionList = FXCollections.observableArrayList(new RegionList().get());
+	ObservableList<Producer> ProducerList = FXCollections.observableArrayList(new ProducerList().get());
 
 	/**
 	 * Initializes the controller class. This method is automatically called after
@@ -40,6 +49,13 @@ public class WineEditDialogController {
 	 */
 	@FXML
 	private void initialize() {
+
+		wineTypeBox.setItems(wineTypeList);
+		wineClassificationBox.setItems(wineClassificationList);
+		wineCountryBox.setItems(CountryList);
+		wineRegionBox.setItems(RegionList);
+		wineProducerBox.setItems(ProducerList);
+
 	}
 
 	/**
@@ -61,11 +77,11 @@ public class WineEditDialogController {
 
 		wineIdField.setText(Long.toString(wine.getId()));
 		wineNameField.setText(wine.getName());
-		wineTypeField.setText(wine.getType().getName());
-		wineClassificationField.setText(wine.getClassification().getCode());
-		wineCountryField.setText(wine.getCountry().getCode());
-		wineRegionField.setText(wine.getRegion().getName());
-		wineProducerField.setText(wine.getProducer().getName());
+		//wineTypeBox.setValue(new WineType(wine.getType().getCode()));
+		wineClassificationBox.setValue(wine.getClassification());
+		wineCountryBox.setValue(wine.getCountry());
+		wineRegionBox.setValue(wine.getRegion());
+		wineProducerBox.setValue(wine.getProducer());
 
 	}
 
@@ -85,12 +101,13 @@ public class WineEditDialogController {
 	private void handleOk() {
 		if (isInputValid()) {
 			wine.setName(wineNameField.getText());
-			/*wine.setType(wineTypeField.getText());
-			wine.setClassification(wineClassificationField.getText());
-			wine.setCountry(wineCountryField.getText());
-			wine.setRegion(wineRegionField.getText());
-			wine.setProducer(lastProducerField.getText());
-			*/
+			/*
+			 * wine.setType(wineTypeField.getText());
+			 * wine.setClassification(wineClassificationField.getText());
+			 * wine.setCountry(wineCountryField.getText());
+			 * wine.setRegion(wineRegionField.getText());
+			 * wine.setProducer(lastProducerField.getText());
+			 */
 
 			okClicked = true;
 			dialogStage.close();
@@ -116,24 +133,22 @@ public class WineEditDialogController {
 		if (wineNameField.getText() == null || wineNameField.getText().length() == 0) {
 			errorMessage += "No valid wine name!\n";
 		}
-		if (wineTypeField.getText() == null || wineTypeField.getText().length() == 0) {
-			errorMessage += "No valid type!\n";
-		}
-		if (wineClassificationField.getText() == null || wineClassificationField.getText().length() == 0) {
-			errorMessage += "No valid classification!\n";
-		}
-
-		if (wineCountryField.getText() == null || wineCountryField.getText().length() == 0) {
-			errorMessage += "No valid country!\n";
-		}
-
-		if (wineRegionField.getText() == null || wineRegionField.getText().length() == 0) {
-			errorMessage += "No valid region!\n";
-		}
-
-		if (wineProducerField.getText() == null || wineProducerField.getText().length() == 0) {
-			errorMessage += "No valid producer!\n";
-		}
+		/*
+		 * if (wineTypeField.getText() == null || wineTypeField.getText().length() == 0)
+		 * { errorMessage += "No valid type!\n"; } if (wineClassificationField.getText()
+		 * == null || wineClassificationField.getText().length() == 0) { errorMessage +=
+		 * "No valid classification!\n"; }
+		 * 
+		 * if (wineCountryField.getText() == null || wineCountryField.getText().length()
+		 * == 0) { errorMessage += "No valid country!\n"; }
+		 * 
+		 * if (wineRegionField.getText() == null || wineRegionField.getText().length()
+		 * == 0) { errorMessage += "No valid region!\n"; }
+		 * 
+		 * if (wineProducerField.getText() == null ||
+		 * wineProducerField.getText().length() == 0) { errorMessage +=
+		 * "No valid producer!\n"; }
+		 */
 
 		if (errorMessage.length() == 0) {
 			return true;

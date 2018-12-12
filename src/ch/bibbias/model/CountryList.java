@@ -1,6 +1,5 @@
 package ch.bibbias.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -9,12 +8,14 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import ch.bibbias.persistence.objects.CountryEntity;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class CountryList {
 
 	private final String DATABASE = "PT_Wine_Inventory";
 
-	public List<Country> get() {
+	public ObservableList<Country> get() {
 
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory(this.DATABASE);
 		EntityManager em = emf.createEntityManager();
@@ -29,7 +30,7 @@ public class CountryList {
 		em.close();
 		emf.close();
 
-		List<Country> result = new ArrayList<Country>();
+		ObservableList<Country> result = FXCollections.observableArrayList();
 
 		for (CountryEntity c : list) {
 			result.add(new Country(c));
@@ -37,7 +38,7 @@ public class CountryList {
 
 		return result;
 	}
-	
+
 	public int getCount() {
 
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory(this.DATABASE);
@@ -53,19 +54,16 @@ public class CountryList {
 	public static void main(String args[]) {
 
 		CountryList list = new CountryList();
-		
+
 		System.out.println("Anzahl:\t" + list.getCount());
 		System.out.println();
-				
+
 		for (Country c : list.get()) {
 			System.out.print(c.getCode());
 			System.out.print("\t" + c.getName());
 			System.out.println();
 		}
-		
-	
+
 	}
-	
-	
 
 }

@@ -1,6 +1,5 @@
 package ch.bibbias.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -9,12 +8,14 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import ch.bibbias.persistence.objects.ProducerEntity;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class ProducerList {
 
 	private final String DATABASE = "PT_Wine_Inventory";
 
-	public List<Producer> get() {
+	public ObservableList<Producer> get() {
 
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory(this.DATABASE);
 		EntityManager em = emf.createEntityManager();
@@ -29,7 +30,7 @@ public class ProducerList {
 		em.close();
 		emf.close();
 
-		List<Producer> result = new ArrayList<Producer>();
+		ObservableList<Producer> result = FXCollections.observableArrayList();
 
 		for (ProducerEntity p : list) {
 			result.add(new Producer(p));
@@ -37,7 +38,7 @@ public class ProducerList {
 
 		return result;
 	}
-	
+
 	public int getCount() {
 
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory(this.DATABASE);
@@ -49,16 +50,16 @@ public class ProducerList {
 		return ((Number) query.getSingleResult()).intValue();
 
 	}
-	
+
 	public static void main(String args[]) {
 
 		ProducerList list = new ProducerList();
 		for (Producer p : list.get()) {
 			System.out.print(p.getId());
 			System.out.print("\t" + p.getName());
-			//System.out.print("\t" + p.getCountry().getCode());
+			// System.out.print("\t" + p.getCountry().getCode());
 			System.out.println();
 		}
-	}	
+	}
 
 }

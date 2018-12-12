@@ -1,6 +1,5 @@
 package ch.bibbias.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -9,12 +8,14 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import ch.bibbias.persistence.objects.RegionEntity;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class RegionList {
 
 	private final String DATABASE = "PT_Wine_Inventory";
 
-	public List<Region> get() {
+	public ObservableList<Region> get() {
 
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory(this.DATABASE);
 		EntityManager em = emf.createEntityManager();
@@ -29,7 +30,7 @@ public class RegionList {
 		em.close();
 		emf.close();
 
-		List<Region> result = new ArrayList<Region>();
+		ObservableList<Region> result = FXCollections.observableArrayList();
 
 		for (RegionEntity r : list) {
 			result.add(new Region(r));
@@ -37,7 +38,7 @@ public class RegionList {
 
 		return result;
 	}
-	
+
 	public int getCount() {
 
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory(this.DATABASE);
@@ -49,7 +50,7 @@ public class RegionList {
 		return ((Number) query.getSingleResult()).intValue();
 
 	}
-	
+
 	public static void main(String args[]) {
 
 		RegionList list = new RegionList();
@@ -59,6 +60,6 @@ public class RegionList {
 			System.out.print("\t" + r.getCountry().getCode());
 			System.out.println();
 		}
-	}	
+	}
 
 }

@@ -108,4 +108,9 @@ public class Producer {
 
 	}
 
+	@Override
+	public String toString() {
+		return this.persistent.getName();
+	}
+
 }

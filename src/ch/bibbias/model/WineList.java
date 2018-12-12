@@ -33,7 +33,7 @@ public class WineList {
 		ObservableList<Wine> result = FXCollections.observableArrayList();
 
 		for (WineEntity w : list) {
-			result.add(new Wine(w.getId()));
+			result.add(new Wine(w));
 		}
 
 		return result;

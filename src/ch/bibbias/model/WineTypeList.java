@@ -1,6 +1,5 @@
 package ch.bibbias.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -9,12 +8,14 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import ch.bibbias.persistence.objects.WineTypeEntity;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class WineTypeList {
 
 	private final String DATABASE = "PT_Wine_Inventory";
 
-	public List<WineType> get() {
+	public ObservableList<WineType> get() {
 
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory(this.DATABASE);
 		EntityManager em = emf.createEntityManager();
@@ -29,7 +30,7 @@ public class WineTypeList {
 		em.close();
 		emf.close();
 
-		List<WineType> result = new ArrayList<WineType>();
+		ObservableList<WineType> result = FXCollections.observableArrayList();
 
 		for (WineTypeEntity wt : list) {
 			result.add(new WineType(wt));
@@ -37,7 +38,7 @@ public class WineTypeList {
 
 		return result;
 	}
-	
+
 	public int getCount() {
 
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory(this.DATABASE);

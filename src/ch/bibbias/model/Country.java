@@ -72,4 +72,9 @@ public class Country {
 
 	}
 
+	@Override
+	public String toString() {
+		return this.persistent.getCode() + " - " + this.persistent.getName();
+	}
+
 }

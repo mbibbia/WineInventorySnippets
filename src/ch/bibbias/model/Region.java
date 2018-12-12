@@ -77,4 +77,9 @@ public class Region {
 
 	}
 
+	@Override
+	public String toString() {
+		return this.persistent.getName();
+	}
+
 }

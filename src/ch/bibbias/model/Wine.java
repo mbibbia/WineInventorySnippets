@@ -33,7 +33,7 @@ public class Wine {
 
 	}
 
-	Wine(WineEntity persistent) {
+	public Wine(WineEntity persistent) {
 		this.persistent = persistent;
 	}
 
@@ -133,6 +133,11 @@ public class Wine {
 		emf.close();
 		em.close();
 
+	}
+
+	@Override
+	public String toString() {
+		return this.persistent.getName();
 	}
 
 }

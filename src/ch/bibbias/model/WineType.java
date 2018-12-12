@@ -72,4 +72,9 @@ public class WineType {
 
 	}
 
+	@Override
+	public String toString() {
+		return this.persistent.getName();
+	}
+
 }

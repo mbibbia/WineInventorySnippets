@@ -72,4 +72,9 @@ public class WineClassification {
 
 	}
 
+	@Override
+	public String toString() {
+		return this.persistent.getCode();
+	}
+
 }
