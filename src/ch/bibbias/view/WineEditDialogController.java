@@ -77,7 +77,7 @@ public class WineEditDialogController {
 
 		wineIdField.setText(Long.toString(wine.getId()));
 		wineNameField.setText(wine.getName());
-		//wineTypeBox.setValue(new WineType(wine.getType().getCode()));
+		wineTypeBox.setValue(wine.getType());
 		wineClassificationBox.setValue(wine.getClassification());
 		wineCountryBox.setValue(wine.getCountry());
 		wineRegionBox.setValue(wine.getRegion());
