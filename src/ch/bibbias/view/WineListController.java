@@ -138,4 +138,42 @@ public class WineListController {
 
 	}
 
+	/**
+	 * Called when the user clicks the new button. Opens a dialog to edit details
+	 * for a new wine.
+	 */
+	@FXML
+	private void handleNewWine() {
+		Wine tempWine = new Wine();
+		boolean okClicked = mainApp.showWineEditDialog(tempWine);
+		if (okClicked) {
+			mainApp.getWineList().add(tempWine);
+		}
+	}
+
+	/**
+	 * Called when the user clicks the edit button. Opens a dialog to edit details
+	 * for the selected person.
+	 */
+	@FXML
+	private void handleEditWine() {
+		Wine selectedWine = wineTable.getSelectionModel().getSelectedItem();
+		if (selectedWine != null) {
+			boolean okClicked = mainApp.showWineEditDialog(selectedWine);
+			if (okClicked) {
+				showWineDetails(selectedWine);
+			}
+
+		} else {
+			// Nothing selected.
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.initOwner(mainApp.getPrimaryStage());
+			alert.setTitle("No Selection");
+			alert.setHeaderText("No Wine Selected");
+			alert.setContentText("Please select a wine in the table.");
+
+			alert.showAndWait();
+		}
+	}
+
 }

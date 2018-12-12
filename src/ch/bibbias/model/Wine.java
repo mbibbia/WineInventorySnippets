@@ -5,6 +5,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import ch.bibbias.persistence.objects.WineEntity;
+import ch.bibbias.persistence.objects.WineTypeEntity;
 import javafx.beans.property.LongProperty;
 import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -23,12 +24,12 @@ public class Wine {
 
 	public Wine(long id) {
 		this.id = id;
-		
-		//Load Data
+
+		// Load Data
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory(this.DATABASE);
 		EntityManager em = emf.createEntityManager();
-	
-		this.persistent = em.find(WineEntity.class,this.id);  
+
+		this.persistent = em.find(WineEntity.class, this.id);
 
 	}
 
@@ -54,12 +55,20 @@ public class Wine {
 		return this.persistent.getName();
 	}
 
+	public void setName(String name) {
+		this.persistent.setName(name);
+	}
+
 	public StringProperty getTypeProperty() {
 		return new SimpleStringProperty(this.persistent.getWineType().getName());
 	}
 
 	public WineType getType() {
 		return new WineType(this.persistent.getWineType());
+	}
+
+	public void setType(WineType wineType) {
+		this.persistent.setWineType(new WineTypeEntity(wineType.getCode()));
 	}
 
 	public StringProperty getClassificationProperty() {

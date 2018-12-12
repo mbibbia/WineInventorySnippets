@@ -49,5 +49,16 @@ public class ProducerList {
 		return ((Number) query.getSingleResult()).intValue();
 
 	}
+	
+	public static void main(String args[]) {
+
+		ProducerList list = new ProducerList();
+		for (Producer p : list.get()) {
+			System.out.print(p.getId());
+			System.out.print("\t" + p.getName());
+			//System.out.print("\t" + p.getCountry().getCode());
+			System.out.println();
+		}
+	}	
 
 }

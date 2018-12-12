@@ -32,7 +32,7 @@ public class InitWine {
 		wine.setClassification(new WineClassificationEntity("DOC"));
 		wine.setCountry(new CountryEntity("IT"));
 		wine.setRegion(new RegionEntity(18));
-		wine.setProducer(new ProducerEntity(1));
+		wine.setProducer(new ProducerEntity(99));
 		wineList.add(wine);
 		
 		wine = new WineEntity();
@@ -41,7 +41,7 @@ public class InitWine {
 		wine.setClassification(new WineClassificationEntity("DOC"));
 		wine.setCountry(new CountryEntity("IT"));
 		wine.setRegion(new RegionEntity(18));
-		wine.setProducer(new ProducerEntity(1));
+		wine.setProducer(new ProducerEntity(99));
 		wineList.add(wine);
 
 		for (WineEntity w : wineList) {

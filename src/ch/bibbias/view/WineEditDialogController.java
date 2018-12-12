@@ -85,11 +85,12 @@ public class WineEditDialogController {
 	private void handleOk() {
 		if (isInputValid()) {
 			wine.setName(wineNameField.getText());
-			wine.setType(wineTypeField.getText());
-			wine.setClassificatin(wineClassificationField.getText());
+			/*wine.setType(wineTypeField.getText());
+			wine.setClassification(wineClassificationField.getText());
 			wine.setCountry(wineCountryField.getText());
 			wine.setRegion(wineRegionField.getText());
 			wine.setProducer(lastProducerField.getText());
+			*/
 
 			okClicked = true;
 			dialogStage.close();
