@@ -2,6 +2,7 @@ package ch.bibbias.persistence.objects;
 
 import javax.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,9 +16,9 @@ public class CountryEntity {
 	@Column(name = "country_name", length = 60)
 	private String name;
 
-	@OneToMany(targetEntity = RegionEntity.class)
+	@OneToMany(targetEntity = RegionEntity.class, mappedBy = "country")
 	@JoinColumn(name = "country_regions")
-	private List<RegionEntity> regionList;
+	private List<RegionEntity> regionList = new ArrayList<>();
 
 	public CountryEntity(String code) {
 		this.code = code;

@@ -30,8 +30,10 @@ public class Region {
 	}
 
 	Region(RegionEntity persistent) {
-		this.persistent = persistent;
-		this.id = this.persistent.getId();
+		if (persistent != null) {
+			this.persistent = persistent;
+			this.id = this.persistent.getId();
+		}
 	}
 
 	public long getId() {

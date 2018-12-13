@@ -38,7 +38,7 @@
             <ChoiceBox fx:id="wineTypeBox" prefHeight="28.0" prefWidth="197.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <ChoiceBox fx:id="wineClassificationBox" prefHeight="28.0" prefWidth="197.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <ChoiceBox fx:id="wineCountryBox" prefHeight="28.0" prefWidth="196.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <ChoiceBox fx:id="wineRegionBox" prefHeight="28.0" prefWidth="195.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <ChoiceBox fx:id="wineRegionBox" onMouseClicked="#handleClickRegion" prefHeight="28.0" prefWidth="195.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <ChoiceBox fx:id="wineProducerBox" prefHeight="28.0" prefWidth="194.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
          </children>
       </GridPane>

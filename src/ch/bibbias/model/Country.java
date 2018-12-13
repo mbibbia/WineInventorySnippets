@@ -30,8 +30,10 @@ public class Country {
 	}
 
 	Country(CountryEntity persistent) {
-		this.persistent = persistent;
-		this.code = this.persistent.getCode();
+		if (persistent != null) {
+			this.persistent = persistent;
+			this.code = this.persistent.getCode();
+		}
 	}
 
 	public String getCode() {

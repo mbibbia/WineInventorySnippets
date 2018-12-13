@@ -54,6 +54,13 @@ public class WineList {
 	public static void main(String args[]) {
 
 		System.out.println(new WineList().getCount());
+		System.out.println();
+		WineList list = new WineList();
+		for (Wine w : list.get()) {
+			System.out.print(w.getId());
+			System.out.print("\t" + w.getName());
+			System.out.println();
+		}
 
 	}
 

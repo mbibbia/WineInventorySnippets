@@ -19,7 +19,7 @@ public class Wine {
 
 	public Wine() {
 		this.persistent = new WineEntity();
-		this.id = this.persistent.getId();
+		// this.id = this.persistent.getId();
 
 	}
 
@@ -35,8 +35,10 @@ public class Wine {
 	}
 
 	public Wine(WineEntity persistent) {
-		this.persistent = persistent;
-		this.id = this.persistent.getId();
+		if (persistent != null) {
+			this.persistent = persistent;
+			this.id = this.persistent.getId();
+		}
 	}
 
 	public LongProperty getIdProperty() {
@@ -78,7 +80,7 @@ public class Wine {
 	}
 
 	public WineClassification getClassification() {
-		return new WineClassification(this.persistent.getClassification().getCode());
+		return new WineClassification(this.persistent.getClassification());
 	}
 
 	public StringProperty getCountryProperty() {
@@ -86,7 +88,7 @@ public class Wine {
 	}
 
 	public Country getCountry() {
-		return new Country(this.persistent.getCountry().getCode());
+		return new Country(this.persistent.getCountry());
 	}
 
 	public StringProperty getRegionProperty() {
@@ -94,7 +96,7 @@ public class Wine {
 	}
 
 	public Region getRegion() {
-		return new Region(this.persistent.getRegion().getId());
+		return new Region(this.persistent.getRegion());
 	}
 
 	public StringProperty getProducerProperty() {
@@ -102,7 +104,7 @@ public class Wine {
 	}
 
 	public Producer getProducer() {
-		return new Producer(this.persistent.getProducer().getId());
+		return new Producer(this.persistent.getProducer());
 	}
 
 	public void reset() {
@@ -120,6 +122,8 @@ public class Wine {
 		em.getTransaction().commit();
 		em.close();
 		emf.close();
+
+		this.id = this.persistent.getId();
 
 	}
 

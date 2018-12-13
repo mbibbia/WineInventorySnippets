@@ -39,9 +39,9 @@ public class WineEditDialogController {
 	ObservableList<WineType> wineTypeList = FXCollections.observableArrayList(new WineTypeList().get());
 	ObservableList<WineClassification> wineClassificationList = FXCollections
 			.observableArrayList(new WineClassificationList().get());
-	ObservableList<Country> CountryList = FXCollections.observableArrayList(new CountryList().get());
-	ObservableList<Region> RegionList = FXCollections.observableArrayList(new RegionList().get());
-	ObservableList<Producer> ProducerList = FXCollections.observableArrayList(new ProducerList().get());
+	ObservableList<Country> countryList = FXCollections.observableArrayList(new CountryList().get());
+	ObservableList<Region> regionList = FXCollections.observableArrayList(new RegionList().get());
+	ObservableList<Producer> producerList = FXCollections.observableArrayList(new ProducerList().get());
 
 	/**
 	 * Initializes the controller class. This method is automatically called after
@@ -52,9 +52,9 @@ public class WineEditDialogController {
 
 		wineTypeBox.setItems(wineTypeList);
 		wineClassificationBox.setItems(wineClassificationList);
-		wineCountryBox.setItems(CountryList);
-		wineRegionBox.setItems(RegionList);
-		wineProducerBox.setItems(ProducerList);
+		wineCountryBox.setItems(countryList);
+		wineRegionBox.setItems(regionList);
+		wineProducerBox.setItems(producerList);
 
 	}
 
@@ -77,11 +77,33 @@ public class WineEditDialogController {
 
 		wineIdField.setText(Long.toString(wine.getId()));
 		wineNameField.setText(wine.getName());
-		wineTypeBox.setValue(wine.getType());
-		wineClassificationBox.setValue(wine.getClassification());
-		wineCountryBox.setValue(wine.getCountry());
-		wineRegionBox.setValue(wine.getRegion());
-		wineProducerBox.setValue(wine.getProducer());
+
+		if (wine.getType() != null) {
+			wineTypeBox.setValue(wine.getType());
+		}
+		if (wine.getClassification() != null) {
+			wineClassificationBox.setValue(wine.getClassification());
+		}
+		if (wine.getCountry() != null) {
+			wineCountryBox.setValue(wine.getCountry());
+		}
+		if (wine.getRegion() != null) {
+			wineRegionBox.setValue(wine.getRegion());
+		}
+		if (wine.getProducer() != null) {
+			wineProducerBox.setValue(wine.getProducer());
+		}
+
+	}
+
+	@FXML
+	private void handleClickRegion() {
+
+		if (wineCountryBox.getValue() != null) {
+			ObservableList<Region> rl = FXCollections.observableArrayList();
+			rl = new RegionList().getForCountry(wineCountryBox.getValue());
+			wineRegionBox.setItems(rl);
+		}
 
 	}
 

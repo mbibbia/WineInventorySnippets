@@ -9,8 +9,9 @@ import ch.bibbias.persistence.objects.WineTypeEntity;
 public class WineType {
 
 	private final String DATABASE = "PT_Wine_Inventory";
-	private String code;
 	private WineTypeEntity persistent;
+	private String code;
+	private boolean isDirty;
 
 	public WineType() {
 		this.persistent = new WineTypeEntity();
@@ -30,8 +31,11 @@ public class WineType {
 	}
 
 	WineType(WineTypeEntity persistent) {
-		this.persistent = persistent;
-		this.code = this.persistent.getCode();
+		if (persistent != null) {
+			this.code = persistent.getCode();
+			this.persistent = persistent;
+		}
+
 	}
 
 	public String getCode() {
@@ -42,8 +46,18 @@ public class WineType {
 		return this.persistent.getName();
 	}
 
+	public void setName(String name) {
+		this.persistent.setName(name);
+		this.isDirty = true;
+	}
+
+	public boolean isDirty() {
+		return this.isDirty;
+	}
+
 	public void reset() {
-		this.persistent = new WineTypeEntity(this.code);
+		this.persistent = new WineTypeEntity(this.persistent.getCode());
+		this.isDirty = false;
 	}
 
 	public void save() {
@@ -57,6 +71,8 @@ public class WineType {
 		em.getTransaction().commit();
 		em.close();
 		emf.close();
+
+		this.isDirty = false;
 
 	}
 
@@ -83,7 +99,7 @@ public class WineType {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((code == null) ? 0 : code.hashCode());
+		result = prime * result + ((this.code == null) ? 0 : this.code.hashCode());
 		return result;
 	}
 
@@ -96,14 +112,12 @@ public class WineType {
 		if (getClass() != obj.getClass())
 			return false;
 		WineType other = (WineType) obj;
-		if (code == null) {
+		if (this.code == null) {
 			if (other.code != null)
 				return false;
-		} else if (!code.equals(other.code))
+		} else if (!this.code.equals(other.code))
 			return false;
 		return true;
 	}
-	
-	
 
 }
