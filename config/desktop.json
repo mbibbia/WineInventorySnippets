@@ -41,7 +41,7 @@
 		},
 		{
 			"id": 4,
-			"orientation": "vertical",
+			"orientation": "horizontal",
 			"subgroups": [{"type": "folder", "id": 4}, {"type": "folder", "id": 2}]
 		}
 	]
